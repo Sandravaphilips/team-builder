@@ -1,13 +1,13 @@
 import React from 'react';
 
 export default function Form(props) {
-    const { onInputChange, onFormSubmit } = props;
+    const { onNameChange, onEmailChange, onRoleChange, onFormSubmit } = props;
     const { name, email, role } = props.teamForm;
     const isDisabled = () => {
       if (!name || !email || !role) {
-        return true;
+        return true
       }
-      return false;
+      return false
     };
   
     return (
@@ -15,7 +15,7 @@ export default function Form(props) {
         <label htmlFor='nameInput'>Name</label>
         <input
           value={name}
-          onChange={onInputChange}
+          onChange={onNameChange}
           id='nameInput'
           type='text'
         />
@@ -23,7 +23,7 @@ export default function Form(props) {
         <label htmlFor='emailInput'>Email</label>
         <input
           value={email}
-          onChange={onInputChange}
+          onChange={onEmailChange}
           id='emailInput'
           type='text'
         />
@@ -31,14 +31,14 @@ export default function Form(props) {
         <label htmlFor='roleInput'>Role</label>
         <input
           value={role}
-          onChange={onInputChange}
+          onChange={onRoleChange}
           id='roleInput'
           type='text'
         />
   
         <button
-          disabled = {isDisabled()}
           onClick={onFormSubmit}
+          disabled={isDisabled()}
         >
           submit
         </button>

@@ -13,10 +13,28 @@ function App() {
   const [teamMembers, setTeamMembers] = useState([])
   const [teamForm, setTeamForm] = useState(initialTeamForm)
 
-  const onInputChange = e => {
+  const onNameChange = e => {
+    // we have the new value for the name input inside e.target.value
     setTeamForm({
-      // ...teamForm, 
-      [e.target.id]: e.target.value
+      name: e.target.value,
+      email: teamForm.email,
+      role: teamForm.role,
+    });
+  };
+
+  const onEmailChange = e => {
+    setTeamForm({
+      name: teamForm.name,
+      email: e.target.value,
+      role: teamForm.role,
+    });
+  };
+
+  const onRoleChange = e => {
+    setTeamForm({
+      name: teamForm.name,
+      email: teamForm.email,
+      role: e.target.value,
     });
   };
 
@@ -37,10 +55,20 @@ function App() {
   return (
     <div className="App">
       <Form 
-      onInputChange={onInputChange}
+      onNameChange={onNameChange}
+      onEmailChange={onEmailChange}
+      onRoleChange={onRoleChange}
       onFormSubmit={onFormSubmit}
       teamForm={teamForm}
       />
+
+      {
+        teamMembers.map(member => (
+          <h5 key={member.id}>
+            {member.name} is a {member.role}.
+          </h5>
+        ))
+      }
     </div>
   );
 }
